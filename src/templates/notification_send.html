@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>{{ browser_id }}</h1>
+<div class="col-sm-4 col-sm-offset-4">
+    <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-default btn-info" value="Send Notification">
+    </form>
+</div>
+
+{% endblock content %}
