@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <h3 style="text-align: center; margin-bottom: 30px">Sent Notifications</h3>
+    <div class="col-sm-3">
+        <h4>Title</h4>
+    </div>
+    <div class="col-sm-3">
+        <h4>Content</h4>
+    </div>
+    <div class="col-sm-3">
+        <h4>Website</h4>
+    </div>
+
+    <div class="col-sm-3">
+        <h4>Sent at</h4>
+    </div>
+    </div>
+
+    <hr/>
+    <hr/>
+    <br>
+
+    {% for notification in notifications %}
+    <div class="row">
+        <div class="col-sm-3">
+            <hp>{{ notification.title }}</hp>
+        </div>
+        <div class="col-sm-3">
+            <p>{{ notification.content }}</p>
+        </div>
+        <div class="col-sm-3">
+            <p>{{ notification.website }}</p>
+        </div>
+
+        <div class="col-sm-3">
+            <p>{{ notification.timestamp }}</p>
+        </div>
+    </div>
+    <hr/>
+    {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<style>
+    body{
+        padding-top: 89px;
+    }
+    h1{
+        color: white;
+    }
+    .motto h3{
+        color: white;
+    }
+    .motto a {
+        color: white;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <div class="wrapper">
+        <div class="landing-header" style="background-image: url('{% static "img/background.jpg" %}');">
+            <div class="container">
+                <div class="motto">
+                    <h1 class="title-uppercase">Web Notification</h1>
+                    <h3>Now user engagement is super easy.</h3>
+                    <br />
+                    <a href="" class="btn" style="display: none;">Get Started</a>
+                    <a class="btn">How it Works</a>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="section text-center landing-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2" id="hiw">
+                            <h2>How it works</h2>
+                            <h5>Just copy The scripts in your website and you are ready to go.</h5>
+                            <br />
+                            <a href="#" class="btn btn-danger btn-fill">See Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

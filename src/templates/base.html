@@ -1,17 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block head_title %}Push{% endblock head_title %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-	<style>
-		{% block style %}{% endblock style %}
-	</style>
+	<title>{% block head_title %}Notipush{% endblock head_title %}</title>
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/ct-paper.css" %}">
+    <link rel="stylesheet" href="{% static "css/demo.css" %}">
+    <link rel="stylesheet" href="{% static "css/examples.css" %}">
+	<link rel="stylesheet" href='{% static "css/base.css" %}'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    {% block style %}{% endblock %}
 </head>
 <body>
-	<div class="container">
+	<!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Notipush</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/#hiw">How it Works</a></li>
+            {% if request.user.is_authenticated %}
+                <li class="active"><a href="/send/">Send Notification</a></li>
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }}<span class="caret"></span></a>
+	              <ul class="dropdown-menu">
+	                <li><a href="/my-notifications/">My Notificatioins</a></li>
+	                <li role="separator" class="divider"></li>
+	                <li><a href="/logout/">Logout</a></li>
+	              </ul>
+	            </li>
+            {% else %}
+            	<li><a href="/login/">Login / Register</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
 		{% block content %}
 		{% endblock content %}
-	</div>
 </body>
+<script src="{% static "js/jquery-1.12.4.js" %}" ></script>
+<script src="{% static "js/bootstrap.min.js" %}" ></script>
+<script src="{% static "js/base.js" %}"></script>
 </html>

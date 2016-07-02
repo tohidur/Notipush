@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Notification
 from .form import NotificationForm
@@ -7,6 +7,7 @@ import urllib
 import urllib2
 from django.views.decorators.csrf import csrf_exempt
 from .models import Notification, Browser, Websites
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -28,6 +29,7 @@ def id_store(request):
         return response
 
 
+@login_required
 def notification_send(request):
     form = NotificationForm(request.POST or None)
     if form.is_valid():
@@ -102,15 +104,30 @@ def notification_send(request):
 
 
 def fetch(request, reg_id):
-    browser = Browser.objects.filter(reg_id=reg_id)
-    data = browser.get_notification
+    print reg_id
+    # browser = Browser.objects.filter(reg_id=reg_id)
+    # data = browser.get_notification
     notification = json.dumps({
-        'title': data.title,
-        'content': data.content,
+        'id': reg_id,
+        'title': 'data.title',
+        'content': 'data.content',
     })
-    print data
+    # print data
     response = HttpResponse(notification)
     response["Access-Control-Allow-Origin"] = "*"
     response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
     response["Access-Control-Allow-Headers"] = "*"
     return response
+
+
+def guide(request):
+    return render(request, "guide.html", {})
+
+
+def notification_list(request):
+    user = request.user
+    qs = Notification.objects.filter(user=user)
+    context = {
+        'notifications': qs,
+    }
+    return render(request, "notification_list.html", context)

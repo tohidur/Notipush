@@ -18,6 +18,8 @@ class Notification(models.Model):
 	def __str__(self):
 		return self.title
 
+	class Meta:
+		ordering = ['-timestamp']
 
 class Browser(models.Model):
 	reg_id = models.TextField(unique=True)
