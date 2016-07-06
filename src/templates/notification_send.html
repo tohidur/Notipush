@@ -1,27 +1,12 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <h1>{{ browser_id }}</h1>
 <div class="col-sm-4 col-sm-offset-4">
     <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-        <div id="div_id_title" class="form-group">
-        	<label for="id_title" class="control-label  requiredField">Title<span class="asteriskField">*</span> </label>
-        	 <div class="controls "> 
-        	 	<input class="textinput textInput form-control" id="id_title" maxlength="120" name="title" type="text" /> 
-        	 </div> 
-    	 </div> 
-    	 <div id="div_id_content" class="form-group"> 
-    	 	<label for="id_content" class="control-label  requiredField">Content<span class="asteriskField">*</span> </label> 
-	 		<div class="controls "> 
-	 			<textarea class="textarea form-control" cols="10" id="id_content" name="content" rows="2"></textarea> 
- 			</div> 
-		</div>
-		<div id="div_id_website" class="form-group"> 
-			<label for="id_website" class="control-label  requiredField">Website<span class="asteriskField">*</span> </label> 
-			<div class="controls ">
-			 <input class="textinput textInput form-control" id="id_website" maxlength="150" name="website" type="text"/>
-			</div>
-         </div>
+        
+        {{ form|crispy }}
 
         <input type="submit" class="btn btn-default btn-info btn-block" value="Send Notification">
     </form>

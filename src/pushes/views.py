@@ -104,7 +104,7 @@ def notification_send(request):
 
 
 def fetch(request, reg_id):
-    print reg_id
+    print 'request is coming'
     # browser = Browser.objects.filter(reg_id=reg_id)
     # data = browser.get_notification
     notification = json.dumps({
@@ -112,11 +112,9 @@ def fetch(request, reg_id):
         'title': 'data.title',
         'content': 'data.content',
     })
+
     # print data
     response = HttpResponse(notification)
-    response["Access-Control-Allow-Origin"] = "*"
-    response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
-    response["Access-Control-Allow-Headers"] = "*"
     return response
 
 
