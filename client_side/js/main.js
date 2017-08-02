@@ -7,6 +7,7 @@ if ('serviceWorker' in navigator) {
   }).then(function(reg) {
     console.log('Service Worker is ready :^)', reg);
     reg.pushManager.subscribe({userVisibleOnly: true}).then(function(sub) {
+      console.log(sub);
       var ndata = {
         endpoint: sub.endpoint.split("/").slice(-1)[0],
         website: window.location.origin.split("/").slice(-1)[0],
